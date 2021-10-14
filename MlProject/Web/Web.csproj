@@ -23,4 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MLModel_WebApi1\MLModel_WebApi1.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
 </Project>

@@ -5,10 +5,13 @@
 }
 
 <div class="text-center">
-    <form method="post">
-        <h1 class="display-4">Welcome please </h1>
-        <input type="file" asp-for="Upload"/>
-        <button type="submit"/>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" asp-for="Image" />
+        <input type="submit" value="submit">
     </form>
-
+    <br />
+    <form method="get">
+        <label>@Model.cd.Name</label>
+    </form>
+   
 </div>

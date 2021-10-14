@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MLModel_WebApi1;
+using Web.Data;
+using Microsoft.Extensions.Hosting;
 
 namespace Web.Pages
 {
@@ -16,20 +18,40 @@ namespace Web.Pages
     {
         MLModel.ModelInput input = new MLModel.ModelInput();
         MLModel.ModelOutput output = new MLModel.ModelOutput();
-        private IHostingEnvironment _environment;
-        public IndexModel(IHostingEnvironment environment)
+
+        private readonly IHostEnvironment _environment;
+        public IndexModel(IHostEnvironment environment)
         {
             _environment = environment;
         }
+
+        [BindProperty(SupportsGet = true)]
+        public CD cd { get; set; }
+
         [BindProperty]
-        public string Upload { get; set; }
+        public IFormFile Image { get; set; }
         public void OnGet()
         {
-
+            cd.Name = output.Prediction;
         }
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-            input.ImageSource = Upload;
+            var path = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Image.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
+            var filePath = Path.Combine(uploads, Image.FileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create)) {
+                await Image.CopyToAsync(fileStream);
+            }
+            
+            input.ImageSource = path;
+            output = MLModel.Predict(input);
+            cd.Name = output.Prediction;
+            return Page();
         }
     }
 }
