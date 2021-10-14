@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using MLModel_WebApi1;
 using Web.Data;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace Web.Pages
 {
@@ -44,13 +45,19 @@ namespace Web.Pages
             }
             var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
             var filePath = Path.Combine(uploads, Image.FileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create)) {
+            using (var fileStream = new FileStream(filePath, FileMode.Create)) { 
                 await Image.CopyToAsync(fileStream);
             }
             
             input.ImageSource = path;
             output = MLModel.Predict(input);
-            cd.Name = output.Prediction;
+            using (StreamReader r = new StreamReader("data/rating.json"))
+            {
+                string json = r.ReadToEnd();
+                List<CD> cdlist = JsonConvert.DeserializeObject<List<CD>>(json);
+                cd = cdlist.Where(n => n.Name == output.Prediction).FirstOrDefault();
+            }
+           
             return Page();
         }
     }
