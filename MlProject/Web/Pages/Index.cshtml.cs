@@ -55,6 +55,7 @@ namespace Web.Pages
             {
                 string json = r.ReadToEnd();
                 List<CD> cdlist = JsonConvert.DeserializeObject<List<CD>>(json);
+                
                 cd = cdlist.Where(n => n.Name == output.Prediction).FirstOrDefault();
             }
            

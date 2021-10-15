@@ -6,12 +6,27 @@
 
 <div class="text-center">
     <form method="post" enctype="multipart/form-data">
+        <label>Please upload an image</label>
         <input type="file" asp-for="Image" />
         <input type="submit" value="submit">
     </form>
     <br />
-    <form method="get">
+    @if (Model.cd != null)
+    {
+        <label asp-for="cd.Name"></label>
         <label>@Model.cd.Name</label>
-    </form>
-   
+        <label asp-for="cd.AmountOfShedding"></label>
+        <label>@Model.cd.AmountOfShedding</label>
+        <label asp-for="cd.EasyToGroom"></label>
+        <label>@Model.cd.EasyToGroom</label>
+        <label asp-for="cd.GeneralHealth"></label>
+        <label>@Model.cd.GeneralHealth</label>
+        <label asp-for="cd.KidFriendly"></label>
+        <label>@Model.cd.KidFriendly</label>
+        <label asp-for="cd.PetFriendly"></label>
+        <label>@Model.cd.PetFriendly</label>
+        <label asp-for="cd.PotentialForPlayfulness"></label>
+        <label>@Model.cd.PotentialForPlayfulness</label>
+    }
+
 </div>

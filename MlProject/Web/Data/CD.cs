@@ -9,6 +9,7 @@ namespace Web.Data
     {
         public string Name { get; set; }
         public int AmountOfShedding { get; set; }
+        public int EasyToGroom { get; set; }
         public int GeneralHealth { get; set; }
         public int KidFriendly { get; set; }
         public int PetFriendly { get; set; }
