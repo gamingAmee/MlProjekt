@@ -11,20 +11,28 @@
         <input type="submit" value="submit">
     </form>
     <br />
-    @if (Model.cd != null)
+    @if (Model.cd.Name != null)
     {
+        <img src="~/images/@Model.Image.FileName" alt="Alternate Text" />
+        <br />
         <label asp-for="cd.Name"></label>
         <label>@Model.cd.Name</label>
+        <br />
         <label asp-for="cd.AmountOfShedding"></label>
         <label>@Model.cd.AmountOfShedding</label>
+        <br />
         <label asp-for="cd.EasyToGroom"></label>
         <label>@Model.cd.EasyToGroom</label>
+        <br />
         <label asp-for="cd.GeneralHealth"></label>
         <label>@Model.cd.GeneralHealth</label>
+        <br />
         <label asp-for="cd.KidFriendly"></label>
         <label>@Model.cd.KidFriendly</label>
+        <br />
         <label asp-for="cd.PetFriendly"></label>
         <label>@Model.cd.PetFriendly</label>
+        <br />
         <label asp-for="cd.PotentialForPlayfulness"></label>
         <label>@Model.cd.PotentialForPlayfulness</label>
     }

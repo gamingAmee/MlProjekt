@@ -31,34 +31,31 @@ namespace Web.Pages
 
         [BindProperty]
         public IFormFile Image { get; set; }
-        public void OnGet()
-        {
-            cd.Name = output.Prediction;
-        }
         public async Task<IActionResult> OnPostAsync()
         {
             var path = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Image.FileName);
 
-            if (System.IO.File.Exists(path))
+            if (!System.IO.File.Exists(path))
             {
-                System.IO.File.Delete(path);
+                var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
+                var filePath = Path.Combine(uploads, Image.FileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Image.CopyToAsync(fileStream);
+                }
             }
-            var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
-            var filePath = Path.Combine(uploads, Image.FileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create)) { 
-                await Image.CopyToAsync(fileStream);
-            }
-            
+
+
             input.ImageSource = path;
             output = MLModel.Predict(input);
             using (StreamReader r = new StreamReader("data/rating.json"))
             {
                 string json = r.ReadToEnd();
                 List<CD> cdlist = JsonConvert.DeserializeObject<List<CD>>(json);
-                
+
                 cd = cdlist.Where(n => n.Name == output.Prediction).FirstOrDefault();
             }
-           
+
             return Page();
         }
     }
