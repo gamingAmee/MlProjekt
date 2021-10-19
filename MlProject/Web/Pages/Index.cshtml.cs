@@ -26,25 +26,27 @@ namespace Web.Pages
             _environment = environment;
         }
 
-        [BindProperty(SupportsGet = true)]
+        [BindProperty]
         public CD cd { get; set; }
 
         [BindProperty]
         public IFormFile Image { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            var path = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Image.FileName);
+            #region ImageSave
+                var path = Path.Combine(_environment.ContentRootPath, "wwwroot/images", Image.FileName);
 
-            if (!System.IO.File.Exists(path))
-            {
-                var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
-                var filePath = Path.Combine(uploads, Image.FileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                if (!System.IO.File.Exists(path))
                 {
-                    await Image.CopyToAsync(fileStream);
+                    var uploads = Path.Combine(_environment.ContentRootPath, "wwwroot/images");
+                    var filePath = Path.Combine(uploads, Image.FileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(fileStream);
+                    }
                 }
-            }
-
+            #endregion
 
             input.ImageSource = path;
             output = MLModel.Predict(input);

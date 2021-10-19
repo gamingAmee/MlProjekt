@@ -7,13 +7,15 @@
 <div class="text-center">
     <form method="post" enctype="multipart/form-data">
         <label>Please upload an image</label>
+        <br />
         <input type="file" asp-for="Image" />
-        <input type="submit" value="submit">
+        <br />
+        <input class="btn btn-primary" type="submit" value="submit">
     </form>
     <br />
-    @if (Model.cd.Name != null)
+    @if (Model.cd != null)
     {
-        <img src="~/images/@Model.Image.FileName" alt="Alternate Text" />
+        <img src="~/images/@Model.Image.FileName" height="200" width="250" alt="Alternate Text" />
         <br />
         <label asp-for="cd.Name"></label>
         <label>@Model.cd.Name</label>
