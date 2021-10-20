@@ -39,9 +39,9 @@ Tilføjet extra billede med hundehvalpe og kattekillinger, ca. 10 billede per ra
 ## Training
 
 Training 1:
-
-
+![Test](https://github.com/gamingAmee/MlProjekt/blob/master/training1.png)
 Training 2:
+![Test](https://github.com/gamingAmee/MlProjekt/blob/master/training2.png)
 Tilføjet ca 370 billeder
 
 
