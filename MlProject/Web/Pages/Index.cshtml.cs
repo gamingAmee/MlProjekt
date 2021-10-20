@@ -57,7 +57,6 @@ namespace Web.Pages
 
                 cd = cdlist.Where(n => n.Name == output.Prediction).FirstOrDefault();
             }
-
             return Page();
         }
     }
