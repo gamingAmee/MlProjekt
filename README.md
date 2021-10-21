@@ -43,7 +43,8 @@ Tilføjet extra billede med hundehvalpe og kattekillinger, ca. 10 billede per ra
 ### Training 2:
 ![Test](https://github.com/gamingAmee/MlProjekt/blob/master/training2.png)
 <p>Tilføjet ca 370 billeder</p>
-
+### Training 3:
+![Test](https://github.com/gamingAmee/MlProjekt/blob/master/training3.png)
 
 DNN: Deep neural network.
 ResNet50: Den har 50 noder.
