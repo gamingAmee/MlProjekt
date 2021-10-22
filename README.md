@@ -2,7 +2,7 @@
 ## Use case: 
 Til at kunne bruge i en kennel for og se om man tag sig af den bestemte race.
 ## Task: 
-Kunne identificere forskellig hunde og katte racer ud fra billede, samt udskrive data om den race.
+Kunne identificere forskellige hunde og katte racer ud fra billede, samt udskrive data om den race.
 ## Data: 
 Billede af en kat eller hund.
 ## Tillægsopgaver:
