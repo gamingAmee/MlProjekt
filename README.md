@@ -14,7 +14,7 @@ Du benytter Big Data som træningsdata (dvs. en særligt stor mængde data; hør
 Du inkorporerer et pseudo neural network ved at have en to-lagsmodel. (Note: Sandsynligvis meget svær test-opgave), Det har Ml gjort for mig.
 </li>
   <li>
-    Du udarbejder 2-3 versioner af din model baseret på generationelle datasæt, evaluerer mellem dem, og implementerer den bedste.[](url)
+    Du udarbejder 2-3 versioner af din model baseret på generationelle datasæt, evaluerer mellem dem, og implementerer den bedste.
   </li>
 </ol>
 
